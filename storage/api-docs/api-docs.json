@@ -1,0 +1,279 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "API Documentation for Produits",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/produits": {
+            "get": {
+                "tags": [
+                    "Produits"
+                ],
+                "summary": "Get list of produits",
+                "description": "Returns list of produits",
+                "operationId": "059ba901d56d1b85845397dcc5120bd2",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Produit"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur lors de la récupération des produits"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Produits"
+                ],
+                "summary": "Create a new produit",
+                "description": "Creates a new produit",
+                "operationId": "1d2c1c7cee2e131dfeb85184f2824a90",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "CodeProduit": {
+                                        "type": "string"
+                                    },
+                                    "DesignationProduit": {
+                                        "type": "string"
+                                    },
+                                    "PU": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "QteMin": {
+                                        "type": "integer"
+                                    },
+                                    "QteCri": {
+                                        "type": "integer"
+                                    },
+                                    "CodeCategorie": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Produit"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "500": {
+                        "description": "Erreur lors de la création du produit"
+                    }
+                }
+            }
+        },
+        "/api/produits/{id}": {
+            "get": {
+                "tags": [
+                    "Produits"
+                ],
+                "summary": "Get a produit by ID",
+                "description": "Returns a single produit",
+                "operationId": "4f89d6d658ffba7d843303b681d52762",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Produit"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Produit non trouvé"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Produits"
+                ],
+                "summary": "Update an existing produit",
+                "description": "Updates a produit",
+                "operationId": "05d27b4688f87d159b38ecb2f0d03dc1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "CodeProduit": {
+                                        "type": "string"
+                                    },
+                                    "DesignationProduit": {
+                                        "type": "string"
+                                    },
+                                    "PU": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "QteMin": {
+                                        "type": "integer"
+                                    },
+                                    "QteCri": {
+                                        "type": "integer"
+                                    },
+                                    "CodeCategorie": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Produit"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Produit non trouvé"
+                    },
+                    "500": {
+                        "description": "Erreur lors de la mise à jour du produit"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Produits"
+                ],
+                "summary": "Delete a produit",
+                "description": "Deletes a produit",
+                "operationId": "3a0611f76b7e02b393d422a5598e5afd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produit supprimé avec succès"
+                    },
+                    "404": {
+                        "description": "Produit non trouvé"
+                    },
+                    "500": {
+                        "description": "Erreur lors de la suppression du produit"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Produit": {
+                "title": "Produit",
+                "required": [
+                    "CodeProduit",
+                    "DesignationProduit",
+                    "CodeCategorie"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "CodeProduit": {
+                        "type": "string",
+                        "example": "P001"
+                    },
+                    "DesignationProduit": {
+                        "type": "string",
+                        "example": "Produit 1"
+                    },
+                    "PU": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 99.99
+                    },
+                    "QteMin": {
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "QteCri": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "CodeCategorie": {
+                        "type": "string",
+                        "example": "C001"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Produits",
+            "description": "Produits"
+        }
+    ]
+}
